@@ -1,0 +1,15 @@
+
+                                         Graph
+
+                               /                     \
+                            Directed                  Undirected
+                          /         \               /           \
+                         Weighed    Unweighted    Weighted    Unweighted
+
+
+
+      ----------------> Complete Graph :
+
+      Har ek vertex se dusri vertex par jaane kaa direct raasta ho
+
+      Number of edges in the complete graph is : n*(n-1)/2

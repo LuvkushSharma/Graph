@@ -1,0 +1,72 @@
+
+         2             7        11
+    1------------4----------- 5--- 7
+    |            |            |   /
+ 3  |            |        13  |  / 1
+    |            |            | /
+    |            |            |/
+    2------------3            6
+         4
+
+    Weighted Undirected Graph
+
+
+    Adjacency Matrix :
+
+    1    2    3    4    5    6   7 <------------ Index
+
+ 1
+
+ 2
+
+ 3
+
+ 4
+
+ 5
+
+ 6
+
+ 7
+
+
+
+    Jinke beech main edge nhi hain toh unke liye memory kyo waste kar rahe ho. Like , no edge from 2 to 5.
+    And Adjacency matrix main 2 to 5 main 0 filled hain but kyo hain. Kyo memory waste kar rahe ho. Sirf unhee ko rakho jo connected hain
+
+
+
+    M-2 :
+
+    Adjacency Lists
+
+    1  : 2 , 4  i.e 1 is connected to 2 and 4
+    2  : 3 , 1
+    3  : 4 , 2
+    4  : 1 , 3 , 5
+    5  : 4 , 6 , 7
+    6  : 5 , 7
+    7  : 5 , 6
+
+    So, Adjacency lists main hamne memory acche se use kara.
+
+
+    But , agar mujhe dekhna hain kii 2 and 7 main edge hain kii nhi. Toh woh puuri linked lists ko traverse karengye and then time increases.
+
+
+    M-3 :
+
+    Yaha par ham har ek key liye ek hashmap rakhengye.
+
+    1 : {2:3 , 4:2}
+
+    2 : {1:4 , 3:4}
+
+    3 : {2:4 , 4:5}
+
+    4 : {1:2 , 3:5 , 5:7}
+
+    ....
+
+    Key ke corresponding hashmap hain.
+    And key ke corresponding waala map Neighbour of key and cost b/w these vertex store karega.

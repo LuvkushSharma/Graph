@@ -1,0 +1,11 @@
+BFS : Breadth first search
+
+ *  It is a traversal technique.
+
+ *  BFS of a graph is an algorithm used to visit all the nodes of a given graph. In this traversal
+ algorithm, one node is selected, and then all of the adjacent nodes are visited one by one.
+
+ * An undirected graph is a graph where all the edges are bidirectional i.e. they point from source to destination
+ and destination to source.
+
+ * A graph is disconnected if at least two vertices of the graph are not connected by a path.

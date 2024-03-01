@@ -1,0 +1,133 @@
+A spanning tree is a sub-graph of an undirected connected graph, which includes all the vertices of the graph with a
+minimum possible number of edges. If a vertex is missed, then it is not a spanning tree.
+
+The edges may or may not have weights assigned to them.
+
+Properties of Spanning Tree
+
+1. A connected graph G can have more than one spanning tree.
+2. Spanning Tree has n-1 edges, where n is the number of Node (Vertices).
+3. All possible spanning trees of graph G, have the same number of edges and vertices.
+4. The spanning tree does not have any cycle (loops).
+5. Removing one edge from the spanning tree will make the graph disconnected, i.e. the spanning tree is minimally connected.
+6. Adding one edge to the spanning tree will create a circuit or loop, i.e. the spanning tree is maximally acyclic.
+
+
+
+Minimum Spanning Tree (MST)
+
+In a weighted graph, a minimum spanning tree is a spanning tree that has minimum weight than all other spanning trees of the same graph.
+
+Minimum Spanning-Tree Algorithm
+We shall learn about two most important spanning tree algorithms here -
+ 1. Kruskal Algo
+ 2. Prim's Algo
+
+
+--------------> Kruskal Algo
+
+1. Minimum cost waali edges select karo
+
+2. Always keep in mind that cycle should not exists.
+
+                   3               6
+           1 ------------- 4 ------------- 5
+           |               |               |\
+        2  |               |  4            |  \ 1
+           |               |             8 |    \
+           |               |               |      \
+           2 ------------- 3               6 ----- 7
+                 7                             5
+
+
+          Set of all the vertices :   {1} , {2} , {3} , {4} , {5} , {6} , {7}
+
+          1. Sabse pehle min cost waala edge pakdo i.e 1
+
+          5
+            \
+              \ 1
+                \
+                  \
+                   7
+
+          merge 5 and 7
+
+          {1} , {2} , {3} , {4} , {5 , 7} , {6}
+
+
+          2. Then cost = 2
+
+              1                     5
+              |                       \
+            2 |                         \  1
+              |                           \
+              |                             \
+              2                              7
+
+          {1,2} , {3} , {4} , {5 , 7} , {6}
+
+
+          3. Then cost = 3
+
+                              3
+                      1 ------------- 4        5
+                      |                         \  1
+                    2 |                           \
+                      |                             \
+                      2                              7
+
+
+            {1, 2 ,4} , {3} , {5 , 7} , {6}
+
+
+
+          4. Then cost = 4
+
+                               3
+                      1 ------------- 4          5
+                      |               |            \  1
+                    2 |               | 4           \
+                      |               |              \
+                      2               3               7
+
+          {1, 2 ,4 , 3} , {5 , 7} , {6}
+
+
+          5. Then cost = 5
+
+                             3
+                      1 ------------- 4          5
+                      |               |            \  1
+                    2 |               | 4           \
+                      |               |              \
+                      2               3       6 ----- 7
+                                                   5
+
+            {1, 2 ,4 , 3} , {5 , 7 , 6}
+
+
+          6. Then cost = 7 but 2-3 forms cycle so, not included
+
+          7. Then cost = 8 i.e 5-6 then also cycle
+
+          8. Then cost = 10
+
+                             3             10
+                      1 ------------- 4 --------- 5
+                      |               |            \  1
+                    2 |               | 4           \
+                      |               |              \
+                      2               3       6 ----- 7
+                                                   5
+
+          {1, 2 ,4 , 3 , 5 , 7 , 6}
+
+
+        Aisi set jisme kuch bhi common naa woh Disjoint set  : {1, 2 ,4} , {3} , {5 , 7} , {6}
+
+        i.e. We have to first learn Disjoint set union.
+
+
+
+

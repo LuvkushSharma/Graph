@@ -1,0 +1,193 @@
+
+
+                   3               6
+           1 ------------- 4 ------------- 5
+           |               |               |\
+        2  |               |  4            |  \ 1
+           |               |             8 |    \
+           |               |               |      \
+           2 ------------- 3               6 ----- 7
+                 7                             5
+
+
+        Har set ke andarr ek representative rakhna padega.
+
+
+
+        ----> Jitni vertex utne set create kardo.
+
+        Each set contains 3 fields :
+
+        1. Data (Vertex Number)
+        2. Rank
+        3. Parent :---> Initially sabhi ke parent woh khudi hongye as initially sab apne aap ko Representative maan rahe hain.
+
+        ------------------> Create
+
+        ------------------        -------------------
+        |       |         |       |                  |
+        |  1    |    0    |       |                  |
+        |-----------------|       |                  |
+        |                 |       |                  |
+        |      1k         |       |                  |
+        -------------------       -------------------   ..............
+              1k                        2k                               7k
+
+
+         Sets address will be stored in the map
+
+         --------------
+         |  1 |  1k   |
+         |-------------
+         |  2 |  2k   |
+         |-------------
+         |  3 |  3k   |
+         |-------------
+         |  4 |  4k   |
+         --------------
+         |  5 |  5k   |
+         --------------
+         |  6 |  6k   |
+         --------------
+         |  7 |  7k   |
+         --------------
+             Map
+
+
+        class Node {
+
+           int val;
+           int rank;
+           Node parent;
+
+        }
+
+        i.e. Above will form :   {1} , {2} , {3} , {4} , {5} , {6} , {7}
+
+
+        ----------------------> Find
+
+        Abb min cost patah lagaana hain. Now ham check karengye kii 5 kis set se belong karta hain and 6 kis set se belong karta hain
+
+        5 kaa representative is 5k and 6 kaa representative 6k
+
+        Dono apne aap ke representative hain.
+
+        -----------------------> Union / Merge
+
+        1. Union By Rank
+        2. Path Compression.
+
+
+        --------------> Union By Rank :
+
+        5 kis set se belong karta hain uski rank kya hain 0.
+        and 6 kis set se belong karta hain uski rank kya hain 0.
+
+        So, dono ko kisi bhi tarah se merge kar do. i.e. 5 ko 6 kaa parent banaao yaa fir 6 ko 5 kaa.
+
+        5 kii height 1 ho gayi. 6 kaa representative 5
+
+                -------------------
+                |       |         |
+                |  5    |    1    |
+                |-----------------|
+                |                 |
+                |      5k         |
+                -------------------
+                        ^
+                        |
+                        |
+                        |
+                        |
+                -------------------
+                |       |         |
+                |  6    |    0    |
+                |-----------------|
+                |                 |
+                |      5k         |
+                -------------------
+
+
+
+        7 kis set se belong karta hain pehle ye patah kar. 7 --> 7k se hee belong karta hain
+
+                 ------------------
+                |       |         |
+                |  7    |    0    |
+                |-----------------|
+                |                 |
+                |      1k         |
+                -------------------
+
+         Yaa fir toh 7 ko 5 kaa parent banaao yaa fir 5 ke neeche 7 ko lagaao
+
+
+              7
+              ^
+              |                              5
+              |           or               /    \
+              5                          /        \
+              ^                         6          7
+              |
+              |                            Way-2
+              6
+
+            Way-1
+
+         1st way se puure tree kaa rank change karna padega.
+
+        Imp :    Union by rank bolta hain Jiski rank kam uske parent ko badal do
+
+
+                        -------------------            ----------------------
+                        |       |         |            |        |           |
+                        |  5    |    1    | <--------- |  7     |       0   |
+                        |-----------------|            |--------------------|
+                        |                 |            |                    |
+                        |      5k         |            |          5k        |
+                        -------------------            ----------------------
+                                ^
+                                |
+                                |
+                                |
+                                |
+                        -------------------
+                        |       |         |
+                        |  6    |    0    |
+                        |-----------------|
+                        |                 |
+                        |      5k         |
+                        -------------------
+
+
+        And , if we take way-1 then Rank of 7 becomes 2 and that of 5 is 1 and 6 kii raank 0 so, hame bahut changes karne padegye.
+
+
+----------> Method-1 : Create
+            Method-2 : Find
+            Method-3 : Union
+
+
+            --------------------- Path Compression --------------
+
+            Maan lo ek time par tree aisa hain
+
+                       5
+                    /  |  \
+                   8    6  7
+                /    \    /  \
+               9      11  15  16
+             /   \
+            23   24
+
+            Link all the nodes to 5 i.e path compression
+
+
+                             5
+                          /  |  \
+                         23  24  8 ...
+
+
+
+
