@@ -4,7 +4,7 @@ package Cycle_Detection_Algos_2.Lec_1;
 
 
 
-Cycle detection in Undirected Graph Using BFS
+Cycle detection in Undirected Graph Using DFS
 
 Let's say we have a graph having two components C1 and C2 i.e graph is disconnected.
 
